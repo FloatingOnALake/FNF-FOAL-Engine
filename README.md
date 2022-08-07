@@ -1,23 +1,164 @@
-# Friday Night Funkin' - Psych Engine EK+
-Psych Engine EK+ (Extra Keys Plus) is a modded version of [Psych Engine](https://gamebanana.com/mods/309789) that uses refurbished code from a now [discontinued project of a similar name.](https://gamebanana.com/mods/333373)
+# Friday Night Funkin' - Noizey Notes
+*This is a modification of [Psych Engine EK+](https://github.com/dopadream/FNF-PsychEngine-EKPlus) intended for a specific mod, if you're looking for the original repository, you have come to the wrong place.*
 
-The goal of this version is to keep up-to-date with Psych Engine and hopefully not lack any features added in newer versions, as well as eliminating some bugs from the previous version.
+## Compiling Tutorial
+### = API Keys =
+Once the repository has been cloned; make a file in `/source`, name it `APIStuff.hx`, and copy & paste this into it:
+```haxe
+package;
 
-## Installation:
-You must have [the most up-to-date version of Haxe](https://haxe.org/download/), seriously, stop using 4.1.5, it misses some stuff.
+class APIStuff
+{
+	public static var API:String = "";
+	public static var EncKey:String = "";
+}
 
-Follow a Friday Night Funkin' source code compilation tutorial, after this you will need to install LuaJIT.
+```
+### = Dependencies =
 
-To install LuaJIT do this: `haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit` on a Command prompt/PowerShell
+- Git
+- [Haxel](https://haxe.org/download/) (LATEST VERSION, STOP USING 4.1.5!!!!)
+- VS Community (Windows only!)
+- 25 gigs of space (Windows only, due to Visual Studio and other crap)
+- 1-5 gigs of space (Non-Windows)
 
-...Or if you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
+### = OPTIONAL Dependencies = 
+
+- Visual Studio Code (for modifying the code itself if you don't want to use Visual Studio itself)
+
+### = Recommended VS Code Extensions =
+
+- Lime
+- Bracket Pair Colorizer 2
+- HXCPP Debugger
+- Tabline
+
+### = Downloads =
+
+Git:
+- Windows/Mac: https://git-scm.com/downloads
+
+- Linux (Ubuntu/Debian based Distros): 
+```
+sudo apt-get update
+sudo apt-get install git -y
+```
 
 
-If you get an error about StatePointer when using Lua, run `haxelib remove linc_luajit` into Command Prompt/PowerShell, then re-install linc_luajit.
+Linux (Arch based Distros): 
+```
+sudo pacman -Sy git --noconfirm;mkdir ~/haxelib && haxelib setup ~/haxelib
+```
 
-If you want video support on your mod, simply do `haxelib install hxCodec` on a Command prompt/PowerShell
 
-otherwise, you can delete the "VIDEOS_ALLOWED" Line on Project.xml
+Haxel:
+- Windows/Mac: https://haxe.org/download/
+
+- Linux (Ubuntu/Debian based Distros):
+```
+sudo add-apt-repository ppa:haxe/releases -y
+sudo apt-get update
+sudo apt-get install haxe -y
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
+
+
+
+- Linux (Arch based Distros)
+```
+sudo pacman -Sy haxe --noconfirm
+```
+
+### = VS Community Setup =
+
+For Windows, you need to install Visual Studio Community 2019. While installing VSC19, don't click on any of the options to install workloads. Instead, go to the individual components tab and choose the following:
+
+* MSVC v142 - VS 2019 C++ x64/x86 build tools
+* Windows SDK (10.0.17763.0)
+
+It is recommended to reboot your PC once it finishes, but it's not required.
+
+
+
+### = Terminal Setup & Compiling Game =
+
+- Windows: press "Windows+R" and type in "cmd", if you don't like cmd, or you just use something different, open that program instead. Make sure to use normal CMD, not admin CMD
+CMD is preinstalled, so it's easier to work with.
+
+- Some Linux Distros: Press "CTRL+ALT+T" and a Terminal window should open
+- Other Linux Distros: Usually you can find your Terminal in your applications menu, or press Ctrl+Alt+2-6 to open the TTY, Ctrl+Alt+7 usually gets you back to your desktop
+
+- Mac: Press cmd+space and type "Terminal" into spotlight or open Launchpad and look for Terminal
+
+Type in these commands:
+```
+haxelib setup
+haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git
+haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
+haxelib git faxe https://github.com/uhrobots/faxe
+haxelib git polymod https://github.com/MasterEric/polymod.git
+haxelib git extension-webm https://github.com/KadeDev/extension-webm
+haxelib install lime 7.9.0
+haxelib install openfl
+haxelib install flixel
+haxelib install flixel-tools
+haxelib install flixel-ui
+haxelib install hscript
+haxelib install flixel-addons
+haxelib install actuate
+haxelib install hxCodec
+haxelib run lime setup
+haxelib run lime setup flixel
+haxelib run flixel-tools setup
+```
+
+Read carefully when it prompts for you to do anything (like: setup the lime command, setup flixel tools, etc)
+
+Run `lime setup PLATFORM`(Replace platform with your device's platform)
+
+To compile & run, run `lime test PLATFORM`(Replace platform with your device's platform)
+
+= Debug Builds =
+
+Add a `-debug` flag at the end of `lime test <platform>`
+e.g. `lime test windows -debug`
+
+= VS Code Installation =
+- Windows/Mac: https://code.visualstudio.com/
+
+- Linux (Ubuntu and Debian based Distros):
+```
+sudo apt install software-properties-common apt-transport-https wget
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt install code
+```
+
+
+- Linux (Arch based distros):
+```
+sudo pacman -Sy code
+```
+If you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
+
+This should clear up every question you have about compiling!
+
+## Credits:
+* Shadow Mario - Coding
+* RiverOaken - Arts and Animations
+* bbpanzu - Assistant Coding
+
+### Special Thanks
+* shubs - New Input System
+* SqirraRNG - Chart Editor's Sound Waveform base code
+* iFlicky - Delay/Combo Menu Song Composer + Dialogue Sounds
+* PolybiusProxy - .MP4 Loader Extension
+* Keoiki - Note Splash Animations
+* Smokey - Spritemap Texture Atlas support
+* Cary - OG Resolution code
+* Nebula_Zorua - VCR Shader code
+_____________________________________
 
 ## Psych Engine EKPlus Credits:
 * tposejank - Original Programmer
@@ -38,7 +179,6 @@ otherwise, you can delete the "VIDEOS_ALLOWED" Line on Project.xml
 * Keoiki - Note Splash Animations
 * Smokey - Sprite Atlas Support
 * Nebula the Zorua - LUA JIT Fork and some Lua reworks
-_____________________________________
 
 # Features
 
@@ -49,12 +189,12 @@ _____________________________________
 
 ## Mod Support
 * Probably one of the main points of this engine, you can code in .lua files outside of the source code, making your own weeks without even messing with the source!
-* Comes with a Mod Organizing/Disabling Menu.
+* Comes with a Mod Organizing/Disabling Menu. 
 
 
 ## Atleast one change to every week:
 ### Week 1:
-  * New Dad Left sing sprite
+  * New Dad Left sing sprite 
   * Unused stage lights are now used
 ### Week 2:
   * Both BF and Skid & Pump does "Hey!" animations
@@ -81,7 +221,7 @@ _____________________________________
 * You can change a note's type on the Editor, it comes with two example types:
   * Alt Animation: Forces an alt animation to play, useful for songs like Ugh/Stress
   * Hey: Forces a "Hey" animation instead of the base Sing animation, if Boyfriend hits this note, Girlfriend will do a "Hey!" too.
-* Multikey support:
+  * Multikey support:
   * You can choose how many keys (through 1-10) specific charts can have.
   * You can also dynamically change the amount of keys with the "Change Mania" event.
   * There is no support for 11 keys or more. You do not have more than 10 fingers.
