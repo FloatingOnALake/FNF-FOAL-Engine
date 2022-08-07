@@ -2,7 +2,7 @@
 echo Checking for updates...
 git remote update
 git status | find /i "behind"
-if errorlevel 1 goto open
+if errorlevel 1 goto check
 git pull
 if %errorlevel% == 0 goto compile
 
@@ -19,6 +19,13 @@ echo.
 choice /m "Would you like to recompile with the current changes"
 if %errorlevel% == 1 goto compile
 goto open
+
+:check
+if exist export\ (
+  goto open
+) else (
+  goto compile
+)
 
 :reset
 git reset --hard
